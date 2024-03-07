@@ -3,7 +3,7 @@ module FileHelper
     begin
       CSV.parse(File.read(file_name), headers: true).map(&:to_h)
     rescue Errno::ENOENT => e
-      raise ("Unable to find csv file to load: #{file_name}\nError:#{e}")
+      raise("Unable to find csv file to load: #{file_name.colorize(:color => :red, :mode => :bold)}\nError:#{e}")
     end
   end
 
@@ -18,9 +18,9 @@ module FileHelper
         string_arr.each { |person| line << person }
       end
     rescue Errno::ENOENT => e
-      raise ("Unable to save csv file:\n#{e}")
+      raise ("Unable to save csv file:\n#{e}").colorize(:color => :red, :mode => :bold)
     else
-      puts ("File: #{save_file_name} has been saved in Results directory")
+      puts ("File: #{save_file_name} has been saved in Results directory").colorize(:green)
     end
   end
 
@@ -40,6 +40,6 @@ module FileHelper
     end
 
     puts "\nThe following is a total count of all the individual errors:\nPlease note that some drivers have more than 1 validation error"
-    error_count.each { |key, value| pp "#{key}: #{value}" }
+    error_count.each { |key, value| puts ("#{key}: #{value}").colorize(:blue) }
   end
 end

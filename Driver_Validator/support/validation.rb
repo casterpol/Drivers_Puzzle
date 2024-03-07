@@ -80,7 +80,7 @@ module Validation
     else
       code_errors = []
       driver.entitlements.each do | char |
-        unless ValidationAndFormatConstants::Entitlements::ValidFields.include? char
+        unless ValidationAndFormatConstants::Entitlements::FieldsMap.include? char
           code_errors << char
         end
       end

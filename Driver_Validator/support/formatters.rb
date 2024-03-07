@@ -8,7 +8,8 @@ module DriverFormat
   end
 
   def self.name_format(name:)
-    name.titleize
+    CapitalizeNames.capitalize(name)
+  # possible edge cases: D'amore, Dubuque and VonRueden, this spelling is not consistent (google searched), this is what is returned when using the capitalize-names gem
   end
 
   def self.driverId_format(driverid:)
