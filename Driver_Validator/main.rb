@@ -1,6 +1,7 @@
+require 'active_support/all'
 require 'csv'
 require 'date'
-require 'active_support/all'
+require 'fileutils'
 
 require_relative 'data/validation_and_format_constants'
 require_relative 'support/driver'

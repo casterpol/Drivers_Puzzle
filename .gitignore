@@ -1,3 +1,6 @@
 .idea/*
 .DS_Store
-results/
+
+# ignore save files
+INVALID.csv
+VALID.csv

@@ -10,6 +10,9 @@ module FileHelper
   def self.save_to_csv(save_file_name:, data:)
     string_arr = transform_object_to_array(data: data)
     begin
+      # creates file path if it doesnt already exist
+      FileUtils.mkdir_p('Driver_Validator/results/') unless File.directory?('Driver_Validator/results/')
+
       CSV.open("Driver_Validator/results/#{save_file_name}.csv", 'w',
                write_headers: true, headers: ValidationAndFormatConstants::SaveFile::Headers) do |line|
         string_arr.each { |person| line << person }
