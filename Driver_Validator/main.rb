@@ -9,20 +9,16 @@ require_relative 'support/driverId_validation'
 require_relative 'support/validation'
 require_relative 'support/file_helper'
 
-
 def validate_driver_records(file_name:)
-  unformatted_list = FileHelper.read_csv(file_name: file_name)
-  drivers = FileHelper.format_array(array: unformatted_list, format_key: 'entitlements')
+  drivers = FileHelper.read_csv(file_name: file_name)
 
   valid, invalid = Validation.validator(driver_list: drivers)
-  pp "Total Valid drivers: #{valid.count}"
-  pp "Total Invalid drivers: #{invalid.count}"
+
+  print "Total Valid drivers: #{valid.count}\nTotal Invalid drivers: #{invalid.count}\n\n"
 
   FileHelper.save_to_csv(save_file_name: 'VALID', data: valid)
   FileHelper.save_to_csv(save_file_name: 'INVALID', data: invalid)
-
-  # pp invalid
+  FileHelper.count_errors(data: invalid)
 end
 
 validate_driver_records(file_name: 'Driver_Validator/data/drivers.csv')
-# validate_driver_records(file_name: 'Driver_Validator/data/test.csv')

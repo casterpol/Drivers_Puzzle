@@ -3,16 +3,8 @@ module FileHelper
     begin
       CSV.parse(File.read(file_name), headers: true).map(&:to_h)
     rescue Errno::ENOENT => e
-      raise ("Unable to find csv file to load: #{file_name.colorize(:color => :red, :mode => :bold)}\nError:#{e}")
+      raise ("Unable to find csv file to load: #{file_name}\nError:#{e}")
     end
-  end
-
-  def self.format_array(array:, format_key:)
-    array.each do |object|
-      object[format_key].gsub!(/[^0-9A-Za-z]/, '')
-      object[format_key] = object[format_key].split('')
-    end
-    array
   end
 
   def self.save_to_csv(save_file_name:, data:)
@@ -31,5 +23,20 @@ module FileHelper
 
   def self.transform_object_to_array(data:)
     data.map(&:convert_to_string_arr)
+  end
+
+  def self.count_errors(data:)
+    error_count = {}
+    errors_array = data.map(&:errors)
+
+    errors_array.each do |error|
+      error.each_key do |key|
+        error_count[key] ||= 0
+        error_count[key] += 1
+      end
+    end
+
+    puts "\nThe following is a total count of all the individual errors:\nPlease note that some drivers have more than 1 validation error"
+    error_count.each { |key, value| pp "#{key}: #{value}" }
   end
 end

@@ -1,27 +1,32 @@
 module DriverFormat
-  def self.formatAll(driver:)
-    driver.firstName = nameFormat(name: driver.firstName)
-    driver.lastName = nameFormat(name: driver.lastName)
-    driver.driverID = driverIdFormat(driverid: driver.driverID)
-    driver.dateOfBirth = dobFormat(dob: driver.dateOfBirth)
-    driver.entitlements = entitlementsFormat(entitlements: driver.entitlements)
+  def self.format_all(driver:)
+    driver.firstName = name_format(name: driver.firstName)
+    driver.lastName = name_format(name: driver.lastName)
+    driver.driverID = driverId_format(driverid: driver.driverID)
+    driver.dateOfBirth = dob_format(dob: driver.dateOfBirth)
+    driver.entitlements = entitlements_format(entitlements: driver.entitlements)
   end
 
-  def self.nameFormat(name:)
+  def self.name_format(name:)
     name.titleize
   end
 
-  def self.driverIdFormat(driverid:)
+  def self.driverId_format(driverid:)
     driverid.upcase
   end
 
-  def self.dobFormat(dob:)
+  def self.dob_format(dob:)
     Date.parse(dob).strftime(ValidationAndFormatConstants::DOB::OutputFormat)
   end
 
-  def self.entitlementsFormat(entitlements:)
+  def self.entitlements_format(entitlements:)
     output = []
     entitlements.sort.each { |key| output << ValidationAndFormatConstants::Entitlements::FieldsMap[key] }
     output.join(', ')
+  end
+
+  def self.format_to_array(field:, remove_unwanted_char: false)
+    field.gsub!(/[^0-9A-Za-z\-']/, '') if remove_unwanted_char
+    field.split('')
   end
 end

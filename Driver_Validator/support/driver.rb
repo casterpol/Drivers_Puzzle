@@ -18,7 +18,11 @@ class Driver
     self.instance_variables.map{ |attribute| self.instance_variable_get(attribute).to_s }
   end
 
+  def entitlements_to_arr
+    self.entitlements = DriverFormat.format_to_array(field: self.entitlements, remove_unwanted_char: true)
+  end
+
   def format_output
-    DriverFormat.formatAll(driver: self)
+    DriverFormat.format_all(driver: self)
   end
 end
