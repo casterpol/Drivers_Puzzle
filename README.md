@@ -2,7 +2,7 @@
 
 ## Setup
 #### Gemfile
-This project uses gems called active-support, capitalize-names colourize, please run the following commmand from the root file to install the gem locally:
+This project uses gems called capitalize-names colourize, please run the following commmand from the root file to install the gem locally:
 ```
 bundle install
 ```

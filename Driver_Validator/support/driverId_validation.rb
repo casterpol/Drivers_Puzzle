@@ -5,7 +5,7 @@ module DriverId
     temp_last_name = driver.lastName.dup
     temp_dob = driver.dateOfBirth.dup
 
-    generated_first_name = first_name(name: temp_first_name)
+    generated_first_name = first_name_initial(name: temp_first_name)
     generated_last_name = last_name(name: temp_last_name)
     generated_month = month(dob: temp_dob)
     generated_year = year(dob: temp_dob)
@@ -36,11 +36,11 @@ module DriverId
     end
   end
 
-  def self.first_name(name:)
+  def self.first_name_initial(name:)
     if name.empty?
       ValidationAndFormatConstants::DriverId::ReplacementCharacter
     else
-      name.first.upcase
+      name[0].upcase
     end
   end
 

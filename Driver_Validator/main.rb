@@ -1,4 +1,3 @@
-require 'active_support/all'
 require 'capitalize_names'
 require 'colorize'
 require 'csv'
