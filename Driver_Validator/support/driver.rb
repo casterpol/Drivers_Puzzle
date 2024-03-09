@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Driver
   attr_accessor :driverID, :firstName, :lastName, :dateOfBirth, :entitlements, :errors
 
@@ -8,10 +9,6 @@ class Driver
     @driverID = driver['driverID']
     @entitlements = driver['entitlements']
     @errors = {}
-  end
-
-  def generate_driverId
-    DriverIdFactory.build(driver: self)
   end
 
   def convert_to_string_arr

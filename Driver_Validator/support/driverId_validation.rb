@@ -1,29 +1,20 @@
+# frozen_string_literal: true
+
 module DriverId
-  def self.validate(driver:)
-    #  Create Duplicate var's to generate the DriverId parts with
-    temp_first_name = driver.firstName.dup
-    temp_last_name = driver.lastName.dup
-    temp_dob = driver.dateOfBirth.dup
+  def self.validate(driverid:, firstname:, lastname:, dob:)
+    generated_first_name = first_name_initial(name: firstname)
+    generated_last_name = last_name(name: lastname)
+    generated_month = month(dob: dob)
+    generated_year = year(dob: dob)
 
-    generated_first_name = first_name_initial(name: temp_first_name)
-    generated_last_name = last_name(name: temp_last_name)
-    generated_month = month(dob: temp_dob)
-    generated_year = year(dob: temp_dob)
-
-    if generated_first_name != driver.driverID[4]
-      driver.errors['DriverId'] = "First name incorrect, generated first name is: #{generated_first_name}"
-    end
-
-    if generated_last_name != driver.driverID[0..3]
-      driver.errors['DriverId'] = "Last name incorrect, generated last name is: #{generated_last_name}"
-    end
-
-    if generated_month != driver.driverID[5..6]
-      driver.errors['DriverId'] = "Month incorrect, generated month is: #{generated_month}"
-    end
-
-    if generated_year != driver.driverID[7..8]
-      driver.errors['DriverId'] = "Year incorrect, generated year is: #{generated_year}"
+    if generated_first_name != driverid[4]
+      "First name incorrect, generated first name is: #{generated_first_name}"
+    elsif generated_last_name != driverid[0..3]
+      "Last name incorrect, generated last name is: #{generated_last_name}"
+    elsif generated_month != driverid[5..6]
+      "Month incorrect, generated month is: #{generated_month}"
+    elsif generated_year != driverid[7..8]
+      "Year incorrect, generated year is: #{generated_year}"
     end
   end
 
@@ -31,7 +22,7 @@ module DriverId
     if name.empty?
       ValidationAndFormatConstants::DriverId::ReplacementCharacter * 4
     else
-      name << ValidationAndFormatConstants::DriverId::ReplacementCharacter while name.gsub(/[-']/, '').length < 4
+      name += ValidationAndFormatConstants::DriverId::ReplacementCharacter while name.gsub(/[-']/, '').length < 4
       name.gsub(/[-']/, '')[0..3].upcase
     end
   end

@@ -2,7 +2,7 @@
 
 ## Setup
 #### Gemfile
-This project uses gems called capitalize-names colourize, please run the following commmand from the root file to install the gem locally:
+This project uses ruby gems, run the following commmand from the root file to install the gem locally:
 ```
 bundle install
 ```
@@ -12,6 +12,12 @@ If you are using Rubymine IDE, you can open the file main.rb file and press the 
 Alternatively, you can run the following cli command from root:
 ````shell
 ruby Driver_Validator/main.rb
+````
+
+### Rspec unit tests
+This pack includes unit tests, the tests have been build and run using rspec. to run the tests use the following command from root:
+````shell
+bundle exec rspec 
 ````
 
 ### There are support folders called:
@@ -31,3 +37,7 @@ ruby Driver_Validator/main.rb
 
 #### Results folder
 This folder will not exist on cloning, however it will generate itself when the save_to_csv method is called. 
+
+### Spec folder
+This folder contains all the unit tests which are written in rspec. simple cov as been used to collate and feedback coverage information.
+

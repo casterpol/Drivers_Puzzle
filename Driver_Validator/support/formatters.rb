@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DriverFormat
   def self.format_all(driver:)
     driver.firstName = name_format(name: driver.firstName)
@@ -5,6 +7,7 @@ module DriverFormat
     driver.driverID = driverId_format(driverid: driver.driverID)
     driver.dateOfBirth = dob_format(dob: driver.dateOfBirth)
     driver.entitlements = entitlements_format(entitlements: driver.entitlements)
+    driver
   end
 
   def self.name_format(name:)

@@ -1,5 +1,8 @@
 .idea/*
 .DS_Store
+.rspec_status
+#rspec simple cov test result files
+coverage
 
 # ignore save files
 INVALID.csv

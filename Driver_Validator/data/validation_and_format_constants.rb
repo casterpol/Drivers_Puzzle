@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ValidationAndFormatConstants
   module SaveFile
     Headers = %w[lastName firstName dateOfBirth driverID entitlements errors].freeze
@@ -5,9 +7,9 @@ module ValidationAndFormatConstants
 
   module DriverId
     Required = true
-    MonthFormat = '%m'.freeze
-    YearFormat = '%y'.freeze
-    ReplacementCharacter = 'X'.freeze
+    MonthFormat = '%m'
+    YearFormat = '%y'
+    ReplacementCharacter = 'X'
   end
 
   module Names
@@ -19,7 +21,7 @@ module ValidationAndFormatConstants
     Required = true
     UpperAge = 100
     LowerAge = 15
-    OutputFormat = '%d, %b, %Y'.freeze
+    OutputFormat = '%d, %b, %Y'
   end
 
   module Entitlements
