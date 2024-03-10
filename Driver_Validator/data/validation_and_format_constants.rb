@@ -2,31 +2,31 @@
 
 module ValidationAndFormatConstants
   module SaveFile
-    Headers = %w[lastName firstName dateOfBirth driverID entitlements errors].freeze
+    HEADERS = %w[lastName firstName dateOfBirth driverID entitlements errors].freeze
   end
 
   module DriverId
-    Required = true
-    MonthFormat = '%m'
-    YearFormat = '%y'
-    ReplacementCharacter = 'X'
+    REQUIRED = true
+    MONTH_FORMAT = '%m'
+    YEAR_FORMAT = '%y'
+    REPLACEMENT_CHARACTER = 'X'
   end
 
   module Names
-    LastNameRequired = true
-    FirstNameRequired = false
+    LAST_NAME_REQUIRED = true
+    FIRST_NAME_REQUIRED = false
   end
 
   module DOB
-    Required = true
-    UpperAge = 100
-    LowerAge = 15
-    OutputFormat = '%d, %b, %Y'
+    REQUIRED = true
+    UPPER_AGE = 100
+    LOWER_AGE = 15
+    OUTPUT_FORMAT = '%d, %b, %Y'
   end
 
   module Entitlements
-    Required = true
-    FieldsMap = { 'A' => 'Motorbike',
+    REQUIRED = true
+    FIELDS_MAP = { 'A' => 'Motorbike',
                   'B' => 'Car',
                   'C' => 'Lorry',
                   'D' => 'Bus' }.freeze

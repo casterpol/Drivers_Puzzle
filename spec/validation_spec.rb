@@ -23,14 +23,14 @@ RSpec.describe Driver do
 
   context 'validates date of birth meets criteria'do
     it 'is a required field' do
-      stub_const('ValidationAndFormatConstants::DOB::Required', true)
+      stub_const('ValidationAndFormatConstants::DOB::REQUIRED', true)
       expect(Validation.dob(dob: @data[0].dateOfBirth)).to eq nil
       expect(Validation.dob(dob: @data[1].dateOfBirth)).to eq('Date of birth empty')
       expect(Validation.dob(dob: @data[2].dateOfBirth)).to eq('Date of birth is not in a valid format: 2000/31/1')
     end
 
     it 'is not a required field' do
-      stub_const('ValidationAndFormatConstants::DOB::Required', false)
+      stub_const('ValidationAndFormatConstants::DOB::REQUIRED', false)
     end
   end
 
@@ -41,14 +41,14 @@ RSpec.describe Driver do
     end
 
     it 'is a required field and checks if it is empty and the pattern' do
-      stub_const('ValidationAndFormatConstants::DriverId::Required', true)
+      stub_const('ValidationAndFormatConstants::DriverId::REQUIRED', true)
       expect(Validation.driver_id(driverid: @data[0].driverID, firstname: @data[0].firstName, lastname: @data[0].lastName, dob: @data[0].dateOfBirth)).to eq nil
       expect(Validation.driver_id(driverid: @data[1].driverID, firstname: @data[1].firstName, lastname: @data[1].lastName, dob: @data[1].dateOfBirth)).to eq('DriverId empty')
       expect(Validation.driver_id(driverid: @data[2].driverID, firstname: @data[2].firstName, lastname: @data[2].lastName, dob: @data[2].dateOfBirth)).to eq('DriverId pattern incorrect')
     end
 
     it 'is not a required field' do
-      stub_const('ValidationAndFormatConstants::DriverId::Required', false)
+      stub_const('ValidationAndFormatConstants::DriverId::REQUIRED', false)
       expect(Validation.driver_id(driverid: @data[0].driverID, firstname: @data[0].firstName, lastname: @data[0].lastName, dob: @data[0].dateOfBirth)).to eq nil
       expect(Validation.driver_id(driverid: @data[1].driverID, firstname: @data[1].firstName, lastname: @data[1].lastName, dob: @data[1].dateOfBirth)).to eq nil
       expect(Validation.driver_id(driverid: @data[2].driverID, firstname: @data[2].firstName, lastname: @data[2].lastName, dob: @data[2].dateOfBirth)).to eq('DriverId pattern incorrect')
@@ -57,14 +57,14 @@ RSpec.describe Driver do
 
   context 'validates name meets criteria' do
     it 'is a required field and checks if it is empty and meets criteria' do
-      stub_const('ValidationAndFormatConstants::Entitlements::Required', true)
+      stub_const('ValidationAndFormatConstants::Entitlements::REQUIRED', true)
       expect(Validation.entitlements(entitlements: @data[0].entitlements)).to eq nil
       expect(Validation.entitlements(entitlements: @data[1].entitlements)).to eq('Entitlements empty')
       expect(Validation.entitlements(entitlements: @data[2].entitlements)).to eq("Incorrect entitlements: [\"X\"]")
     end
 
     it 'is not required field and checks if it is empty and meets criteria' do
-      stub_const('ValidationAndFormatConstants::Entitlements::Required', false)
+      stub_const('ValidationAndFormatConstants::Entitlements::REQUIRED', false)
       expect(Validation.entitlements(entitlements: @data[0].entitlements)).to eq nil
       expect(Validation.entitlements(entitlements: @data[1].entitlements)).to eq nil
       expect(Validation.entitlements(entitlements: @data[2].entitlements)).to eq("Incorrect entitlements: [\"X\"]")

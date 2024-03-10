@@ -20,12 +20,12 @@ module DriverFormat
   end
 
   def self.dob_format(dob:)
-    Date.parse(dob).strftime(ValidationAndFormatConstants::DOB::OutputFormat)
+    Date.parse(dob).strftime(ValidationAndFormatConstants::DOB::OUTPUT_FORMAT)
   end
 
   def self.entitlements_format(entitlements:)
     output = []
-    entitlements.sort.each { |key| output << ValidationAndFormatConstants::Entitlements::FieldsMap[key] }
+    entitlements.sort.each { |key| output << ValidationAndFormatConstants::Entitlements::FIELDS_MAP[key] }
     output.join(', ')
   end
 

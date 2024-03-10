@@ -10,7 +10,7 @@ require 'simplecov_json_formatter'
 
 require_relative '../Driver_Validator/data/validation_and_format_constants'
 require_relative '../Driver_Validator/support/driver'
-require_relative '../Driver_Validator/support/driverId_validation'
+require_relative '../Driver_Validator/support/driverId_generator'
 require_relative '../Driver_Validator/support/file_helper'
 require_relative '../Driver_Validator/support/formatters'
 require_relative '../Driver_Validator/support/validation'

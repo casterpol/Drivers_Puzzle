@@ -14,7 +14,7 @@ module FileHelper
       FileUtils.mkdir_p('Driver_Validator/results/') unless File.directory?('Driver_Validator/results/')
 
       CSV.open("Driver_Validator/results/#{save_file_name}.csv", 'w',
-               write_headers: true, headers: ValidationAndFormatConstants::SaveFile::Headers) do |line|
+               write_headers: true, headers: ValidationAndFormatConstants::SaveFile::HEADERS) do |line|
         string_arr.each { |person| line << person }
       end
     rescue Errno::ENOENT => e
