@@ -20,6 +20,19 @@ RSpec.describe Driver do
     expect(@driver.entitlements_to_arr).to eq( ['C', 'D', 'A'] )
   end
 
+  it 'calls each validation method when validate fields method is used' do
+    expect(Validation).to receive(:name).and_return(nil).twice
+    expect(Validation).to receive(:dob).and_return(nil)
+    expect(Validation).to receive(:driver_id).and_return(nil)
+    expect(Validation).to receive(:entitlements).and_return(nil)
+    @driver.validate_fields
+  end
+
+  it 'calls "DriverId.generate" when generate driverId method is used' do
+    expect(DriverId).to receive(:generate).and_return(nil)
+    @driver.generate_driverId
+  end
+
   it 'calls "DriverFormat.format_all" when format all method is used' do
     expect(DriverFormat).to receive(:format_all).and_return(nil)
     @driver.format_output

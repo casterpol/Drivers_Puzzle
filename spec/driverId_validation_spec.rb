@@ -1,24 +1,13 @@
 RSpec.describe DriverId do
-  context 'Validate method updates error field if error if one is found' do
-    before(:each) do
-      test_driver = { 'lastName' => 'lewis', 'firstName' => 'paul', 'dateOfBirth' => '1984-06-01',
-                      'driverID' => 'LEWIP0684', 'entitlements' => '["C", "D", "A"]' }
-      @driver = Driver.new(driver: test_driver)
-    end
 
-    error_map = {
-      'LEWIX0684' => 'First name incorrect, generated first name is: P',
-      'TESTP0684' => 'Last name incorrect, generated last name is: LEWI',
-      'LEWIP1084' => 'Month incorrect, generated month is: 06',
-      'LEWIP0694' => 'Year incorrect, generated year is: 84',
-      'LEWIP0684' => nil
-    }
-    error_map.each do |new_id, error_response|
-      it 'returns error if first name initial value is incorrect' do
-        @driver.driverID = new_id
-        expect(DriverId.validate(driverid: new_id, firstname: @driver.firstName, lastname: @driver.lastName, dob: @driver.dateOfBirth)).to eq(error_response)
-      end
-    end
+  it 'call each of the generators when generate method is called' do
+    test_driver = { 'lastName' => 'lewis', 'firstName' => 'paul', 'dateOfBirth' => '1984-06-01', 'driverID' => 'LEWIP0684', 'entitlements' => "[\"C\", \"D\", \"A\"]" }
+    driver = Driver.new(driver: test_driver)
+
+    expect(DriverId).to receive(:last_name).and_return(nil)
+    expect(DriverId).to receive(:first_name_initial).and_return(nil)
+    expect(DriverId).to receive(:date_of_birth).and_return(nil).twice
+    DriverId.generate(driver: driver)
   end
 
   context 'First name and last name generator:' do
@@ -53,6 +42,11 @@ RSpec.describe DriverId do
         expect(DriverId.date_of_birth(dob: input, date_format: ValidationAndFormatConstants::DriverId::YEAR_FORMAT)).to eq(expected_output)
       end
     end
+
+    it 'catches and returns error if invalid date is passed in' do
+      expect(DriverId.date_of_birth(dob: 'Invalid', date_format: ValidationAndFormatConstants::DriverId::YEAR_FORMAT)).to eq('Date of birth is not in a valid format: Invalid')
+    end
+
   end
 
 end
