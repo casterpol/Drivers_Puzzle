@@ -18,7 +18,7 @@ def validate_driver_records(file_name:)
   FileHelper.save_to_csv(save_file_name: 'VALID', data: valid)
   FileHelper.save_to_csv(save_file_name: 'INVALID', data: invalid)
 
-  print "\nTotal Valid drivers: #{valid.count}\nTotal Invalid drivers: #{invalid.count}\n".colorize(:blue)
+  print "\nValid drivers: #{valid.count}\nInvalid drivers: #{invalid.count}\nTotal drivers checked: #{drivers.count}\n".colorize(:blue)
   FileHelper.count_errors(data: invalid)
 end
 
