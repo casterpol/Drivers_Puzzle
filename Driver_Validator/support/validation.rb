@@ -46,9 +46,7 @@ module Validation
     when dob.empty?
       # If DOB required flag is turned to false, this empty statement allows the empty field to pass as no checks could be done
     else
-      begin
-        driver_dob = Date.parse(dob)
-
+      begin driver_dob = Date.parse(dob)
         if driver_dob > Date.today
           'Date of birth must not be in the future'
         elsif driver_dob.year.digits.length != 4
@@ -58,8 +56,8 @@ module Validation
         elsif driver_dob > Date.today.prev_year(ValidationAndFormatConstants::DOB::LowerAge)
           'Driver cannot be under 15 years of age'
         end
-      rescue Exception
-        'Date of birth is not in a valid format'
+      rescue Date::Error
+        "Date of birth is not in a valid format: #{dob}"
       end
     end
   end

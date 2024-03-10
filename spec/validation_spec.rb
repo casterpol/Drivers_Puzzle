@@ -26,7 +26,7 @@ RSpec.describe Driver do
       stub_const('ValidationAndFormatConstants::DOB::Required', true)
       expect(Validation.dob(dob: @data[0].dateOfBirth)).to eq nil
       expect(Validation.dob(dob: @data[1].dateOfBirth)).to eq('Date of birth empty')
-      expect(Validation.dob(dob: @data[2].dateOfBirth)).to eq('Date of birth is not in a valid format')
+      expect(Validation.dob(dob: @data[2].dateOfBirth)).to eq('Date of birth is not in a valid format: 2000/31/1')
     end
 
     it 'is not a required field' do

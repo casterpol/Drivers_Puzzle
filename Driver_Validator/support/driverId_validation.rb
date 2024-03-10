@@ -4,8 +4,8 @@ module DriverId
   def self.validate(driverid:, firstname:, lastname:, dob:)
     generated_first_name = first_name_initial(name: firstname)
     generated_last_name = last_name(name: lastname)
-    generated_month = month(dob: dob)
-    generated_year = year(dob: dob)
+    generated_month = date_of_birth(dob: dob, date_format: ValidationAndFormatConstants::DriverId::MonthFormat)
+    generated_year = date_of_birth(dob: dob, date_format: ValidationAndFormatConstants::DriverId::YearFormat)
 
     if generated_first_name != driverid[4]
       "First name incorrect, generated first name is: #{generated_first_name}"
@@ -35,11 +35,9 @@ module DriverId
     end
   end
 
-  def self.month(dob:)
-    Date.parse(dob).strftime(ValidationAndFormatConstants::DriverId::MonthFormat) unless dob.empty?
-  end
-
-  def self.year(dob:)
-    Date.parse(dob).strftime(ValidationAndFormatConstants::DriverId::YearFormat) unless dob.empty?
+  def self.date_of_birth(dob:, date_format:)
+    Date.parse(dob).strftime(date_format) unless dob.empty?
+  rescue Date::Error
+    "Date of birth is not in a valid format: #{dob}"
   end
 end

@@ -44,13 +44,13 @@ RSpec.describe DriverId do
     month_data.each do |input, expected_output|
 
       it 'generates a month consisting of 2 digits' do
-        expect(DriverId.month(dob: input)).to eq(expected_output)
+        expect(DriverId.date_of_birth(dob: input, date_format: ValidationAndFormatConstants::DriverId::MonthFormat)).to eq(expected_output)
       end
     end
 
     year_data.each do |input, expected_output|
       it 'generates a year consisting of 2 digits' do
-        expect(DriverId.year(dob: input)).to eq(expected_output)
+        expect(DriverId.date_of_birth(dob: input, date_format: ValidationAndFormatConstants::DriverId::YearFormat)).to eq(expected_output)
       end
     end
   end
