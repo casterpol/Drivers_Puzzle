@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'capitalize_names'
 require 'colorize'
 require 'csv'
 require 'date'
 require 'fileutils'
 
-require_relative 'data/validation_and_format_constants'
+require_relative 'support/validation_and_format_constants'
 require_relative 'support/driver'
 require_relative 'support/formatters'
 require_relative 'support/driverId_generator'

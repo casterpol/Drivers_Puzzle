@@ -8,7 +8,7 @@ require 'simplecov'
 require 'simplecov-console'
 require 'simplecov_json_formatter'
 
-require_relative '../Driver_Validator/data/validation_and_format_constants'
+require_relative '../Driver_Validator/support/validation_and_format_constants'
 require_relative '../Driver_Validator/support/driver'
 require_relative '../Driver_Validator/support/driverId_generator'
 require_relative '../Driver_Validator/support/file_helper'
