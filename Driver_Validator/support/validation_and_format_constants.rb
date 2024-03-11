@@ -2,7 +2,7 @@
 
 module ValidationAndFormatConstants
   module SaveFile
-    HEADERS = %w[lastName firstName dateOfBirth driverID entitlements errors].freeze
+    HEADERS = %w[lastName firstName dateOfBirth driverID entitlements errors]
   end
 
   module DriverId
@@ -27,8 +27,8 @@ module ValidationAndFormatConstants
   module Entitlements
     REQUIRED = true
     FIELDS_MAP = { 'A' => 'Motorbike',
-                  'B' => 'Car',
-                  'C' => 'Lorry',
-                  'D' => 'Bus' }.freeze
+                   'B' => 'Car',
+                   'C' => 'Lorry',
+                   'D' => 'Bus' }
   end
 end

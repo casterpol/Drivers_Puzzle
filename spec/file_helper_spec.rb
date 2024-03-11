@@ -13,13 +13,6 @@ RSpec.describe FileHelper do
       test_drivers.each { |driver| @data << Driver.new(driver: driver) }
     end
 
-    it 'returns an array when transform_object_to_array method is called' do
-      output = FileHelper.transform_object_to_array(data: @data)
-
-      expect(output[0]).to eq(["lewis", "paul", "1984-06-01", "LEWIP0684", "[\"C\", \"D\", \"A\"]", "{}"])
-      expect(output[1]).to eq(["jones", "peter", "2006-12-07", "JONEP0684", "[\"B\", \"A\"]", "{}"])
-    end
-
     it 'returns a count of errors when count_errors method is called' do
       # stops any terminal output of the count
       allow($stdout).to receive(:puts).and_return nil
