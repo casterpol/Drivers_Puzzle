@@ -13,6 +13,7 @@ require_relative '../Driver_Validator/support/driver'
 require_relative '../Driver_Validator/support/driverId_generator'
 require_relative '../Driver_Validator/support/file_helper'
 require_relative '../Driver_Validator/support/formatters'
+require_relative '../Driver_Validator/support/output_helper'
 require_relative '../Driver_Validator/support/validation'
 
 

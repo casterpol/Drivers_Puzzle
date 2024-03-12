@@ -13,20 +13,6 @@ RSpec.describe FileHelper do
       test_drivers.each { |driver| @data << Driver.new(driver: driver) }
     end
 
-    it 'returns a count of errors when count_errors method is called' do
-      # stops any terminal output of the count
-      allow($stdout).to receive(:puts).and_return nil
-
-      #  sense check that count returns 0 if none are present
-      expect(FileHelper.count_errors(data: @data)).to be_empty
-
-      # Add error fields to drivers
-      @data[0].errors = { 'DriverId' => 'DriverId pattern incorrect', 'Entitlements' => 'Incorrect entitlements: ["U", "Y"]' }
-      @data[1].errors = { 'Last Name' => 'Invalid characters found: 20240213', 'Entitlements' => 'Incorrect entitlements: ["U", "Y"]' }
-
-      expect(FileHelper.count_errors(data: @data)).to eq({ 'Last Name' => 1, 'DriverId' => 1, 'Entitlements' => 2 })
-    end
-
     it 'saves a files when the save method is called' do
       # stops any terminal output of the count
       allow($stdout).to receive(:puts).and_return nil
@@ -45,5 +31,4 @@ RSpec.describe FileHelper do
       File.delete(file_path)
     end
   end
-
 end
